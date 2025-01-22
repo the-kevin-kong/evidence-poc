@@ -32,7 +32,7 @@ Wow it finally works
       date_trunc('month', order_datetime) as month,
       sum(sales) as sales_usd,
       category
-  from needful_things.orders
+  from bigquery.orders
   where category like '${inputs.category.value}'
   and date_part('year', order_datetime) like '${inputs.year.value}'
   group by all
@@ -56,7 +56,7 @@ Wow it finally works
       -- make_date(2024, extract(month from order_datetime), 1) as month,
       date_trunc('month', order_datetime) as date_month,
       sum(sales) as sales_usd
-    from needful_things.orders
+    from bigquery.orders
     group by all
     order by date_month
 ```

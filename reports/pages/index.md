@@ -12,7 +12,7 @@ Wow it finally works
 ```sql categories
   select
       category
-  from needful_things.orders
+  from bigquery.orders
   group by category
 ```
 

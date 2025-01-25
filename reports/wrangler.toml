@@ -2,5 +2,5 @@ name = "evidence-poc"
 pages_build_output_dir = "build"
 
 [[r2_buckets]]
-binding = "APP"
+binding = "BUCKET"
 bucket_name = "evidence-poc"

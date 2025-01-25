@@ -1,0 +1,3 @@
+[[r2_buckets]]
+binding = "APP"
+bucket_name = "evidence-poc"

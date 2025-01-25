@@ -7,7 +7,7 @@
 //     });
 // }
 
-export async function onRequest(context) {
+export async function onRequestGet(context) {
     const url = new URL(context.request.url);
     console.log(`[LOGGING]: Request came from ${url}`)
     const filePath = url.pathname.replace("/_app/", "");

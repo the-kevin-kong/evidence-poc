@@ -9,7 +9,7 @@
 
 export async function onRequest(context) {
     const url = new URL(context.request.url);
-    const filePath = url.pathname;
+    const filePath = url.pathname.replace("/_app/", "");
     const file = await context.env.APP.get(filePath);
     if (file === null) {
       return new Response("Not found", { status: 404 });

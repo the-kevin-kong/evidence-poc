@@ -7,12 +7,13 @@
 //     });
 // }
 
-export async function onRequestGet(context) {
+export async function onRequest(context) {
     const url = new URL(context.request.url);
-    console.log(`[LOGGING]: Request came from ${url}`)
-    const filePath = url.pathname.replace("/_app/", "");
+    console.log(`[LOGGING]: Request came from ${url}`);
+    const filePath = url.pathname.replace("/_app", "");
+    console.log(`[LOGGING]: Resolved filepath ${filePath}`);
     const file = await context.env.APP.get(filePath);
-    console.log(`[LOGGING]: Resolved bucket filepath: ${file}`)
+    console.log(`[LOGGING]: Resolved bucket filepath: ${file}`);
     if (file === null) {
       return new Response("Not found", { status: 404 });
     }

@@ -1,10 +1,9 @@
+name = "evidence-poc"
+pages_build_output_dir = "build"
+
 [[r2_buckets]]
 binding = "APP"
 bucket_name = "evidence-poc"
 
 [build]
 command = "npm run sources && npm run build"
-output_dir = "build"
-
-[build.pages]
-pages_build_output_dir = "build"

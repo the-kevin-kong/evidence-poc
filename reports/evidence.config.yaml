@@ -1,6 +1,3 @@
-deployment:
-  basePath: /evidence-poc
-
 appearance:
   default: system
   switcher: true

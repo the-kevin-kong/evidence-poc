@@ -6,9 +6,6 @@ on:
 
 jobs:
   build:
-    defaults:
-      run:
-        working-directory: ./reports
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -16,14 +13,16 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          cache-dependency-path:: package-lock.json
+          cache-dependency-path:: reports/package-lock.json
           node-version: 20
           cache: npm
 
       - name: Install dependencies
+        working-directory: reports
         run: npm install
 
       - name: build
+        working-directory: reports
         env:
           BASE_PATH: '/${{ github.event.repository.name }}'
           ## Add and uncomment any environment variables here
@@ -39,7 +38,8 @@ jobs:
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './reports/build/${{ github.event.repository.name }}'
+          working-directory: reports
+          path: 'build/${{ github.event.repository.name }}'
 
   deploy:
     needs: build

@@ -6,6 +6,9 @@ on:
 
 jobs:
   build:
+    defaults:
+      run:
+        working-directory: ./reports
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -13,7 +16,6 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          cache-dependency-path: reports/package-lock.json
           node-version: 20
           cache: npm
 
@@ -30,14 +32,13 @@ jobs:
           EVIDENCE_SOURCE__bigquery__private_key: ${{ secrets.EVIDENCE_SOURCE__bigquery__private_key }}
           EVIDENCE_SOURCE__bigquery__project_id: ${{ secrets.EVIDENCE_SOURCE__bigquery__project_id }}
         run: |
-          cd ./reports
           npm run sources
           npm run build
 
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './reports/build/${{ github.event.repository.name }}'
+          path: 'build/${{ github.event.repository.name }}'
 
   deploy:
     needs: build
